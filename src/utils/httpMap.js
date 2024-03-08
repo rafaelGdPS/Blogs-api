@@ -3,6 +3,7 @@ const httpCode = {
   CREATED: 201,
   BAD_REQUEST: 400,
   CONFLICT: 409,
+  NOT_FOUND: 404,
 };
 
 const statusCode = (statusText) => httpCode[statusText];

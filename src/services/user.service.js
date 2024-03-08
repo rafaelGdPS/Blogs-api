@@ -18,7 +18,17 @@ const getAllUsers = async () => {
   return { status: 'SUCCESSFUL', data: users };
 };
 
+const getById = async (id) => {
+  const user = await User.findOne({ where: { id }, attributes: { exclude: ['password'] } });
+  console.log(user);
+  if (!user) {
+    return { status: 'NOT_FOUND', data: { message: 'User does not exist' } };
+  }
+  return { status: 'SUCCESSFUL', data: user };
+};
+
 module.exports = {
   insertUser,
   getAllUsers,
+  getById,
 };
