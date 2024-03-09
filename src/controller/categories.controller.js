@@ -7,6 +7,12 @@ const insert = async (req, res) => {
   return res.status(statusCode(status)).json(data);
 };
 
+const getAll = async (_req, res) => {
+  const { data, status } = await categoriesService.getAll();
+  return res.status(statusCode(status)).json(data);
+};
+
 module.exports = {
   insert,
+  getAll,
 };
