@@ -10,8 +10,9 @@ const createToken = (payload) => {
   return token;
 };
 
-const verifyToken = (token) => {
+const verifyToken = async (token) => {
   const payload = jwt.verify(token, SECRET);
+
   return payload;
 };
 

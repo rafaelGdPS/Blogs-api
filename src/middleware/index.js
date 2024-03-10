@@ -3,6 +3,7 @@ const validateEmail = require('./validateEmail');
 const validatePassword = require('./validatePassword');
 const validateAuth = require('./validateAuth');
 const validateName = require('./validateCategoriesName');
+const validateInput = require('./validateInputsPosts');
 
 module.exports = {
   validateEmail,
@@ -10,4 +11,5 @@ module.exports = {
   validatePassword,
   validateAuth,
   validateDisplayName,
+  validateInput,
 };
