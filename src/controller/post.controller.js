@@ -10,6 +10,12 @@ const insert = async (req, res) => {
   return res.status(statusCode(status)).json(data);
 };
 
+const getAll = async (req, res) => {
+  const { data, status } = await postService.getAll();
+  return res.status(statusCode(status)).json(data);
+};
+
 module.exports = {
   insert,
+  getAll,
 };

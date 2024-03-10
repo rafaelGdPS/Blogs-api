@@ -1,4 +1,4 @@
-const { PostCategory, BlogPost, Category } = require('../models');
+const { PostCategory, BlogPost, Category, User } = require('../models');
 
 const insertPost = async (body) => {
   const { userId, title, content, categoryIds } = body;
@@ -8,8 +8,7 @@ const insertPost = async (body) => {
     return verify;
   });
   const responses = await Promise.all(verifyCategories);
-  
-  // const result = await sequelize.transaction(async (t) => {
+ 
   if (responses.includes(null)) {
     return { status: 'BAD_REQUEST', data: { message: 'one or more "categoryIds" not found' } };
   }
@@ -19,11 +18,30 @@ const insertPost = async (body) => {
   });
     
   return { status: 'CREATED', data: post };
-  // });
-  // console.log(result);
-  // return result;
+};
+
+const getAll = async () => {
+  const data = await BlogPost.findAll({
+   
+    include: [
+      { model: User, 
+        as: 'user',
+        attributes: { exclude: ['password'] }, 
+      },
+
+      { 
+        model: Category,
+        as: 'categories', 
+        through: { attributes: [] }, 
+      },
+      
+    ],
+ 
+  });
+  return { status: 'SUCCESSFUL', data };
 };
 
 module.exports = {
   insertPost,
+  getAll,
 };
