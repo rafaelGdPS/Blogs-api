@@ -28,6 +28,8 @@ app.post('/categories', validateAuth, validateName, categoriesController.insert)
 app.get('/categories', validateAuth, categoriesController.getAll);
 
 app.post('/post', validateAuth, validateInput, postController.insert);
+app.put('/post/:id', validateAuth, validateInput, postController.update);
+app.get('/post/:id', validateAuth, postController.getPostById);
 app.get('/post', validateAuth, postController.getAll);
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
