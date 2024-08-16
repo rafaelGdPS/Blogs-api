@@ -18,9 +18,14 @@ const userById = async (req, res) => {
   const { data, status } = await userService.getById(id);
   return res.status(statusCode(status)).json(data);
 };
-
+const autoDelete = async (req, res) => {
+  const { userId } = req.user;
+  const { status } = await userService.autoDelete(userId);
+  return res.status(statusCode(status)).json();
+}; 
 module.exports = {
   insertUser,
   allUsers,
   userById,
+  autoDelete,
 };

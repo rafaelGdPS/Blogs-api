@@ -24,9 +24,18 @@ const update = async (req, res) => {
   const { data, status } = await postService.update(body, params.id, user.userId);
   return res.status(statusCode(status)).json(data);
 };
+
+const search = async (req, res) => {
+  const { q } = req.query;
+
+  const { status, data } = await postService.search(q);
+  return res.status(statusCode(status)).json(data);
+};
+
 module.exports = {
   insert,
   getAll,
   getPostById,
   update,
+  search,
 };

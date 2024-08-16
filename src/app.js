@@ -23,11 +23,13 @@ app.post('/login', loginController.login);
 app.post('/user', validateDislplayName, validateEmail, validatePassword, userController.insertUser);
 app.get('/user/:id', validateAuth, userController.userById);
 app.get('/user', validateAuth, userController.allUsers);
+app.delete('/user/me', validateAuth, userController.autoDelete);
 
 app.post('/categories', validateAuth, validateName, categoriesController.insert);
 app.get('/categories', validateAuth, categoriesController.getAll);
 
 app.post('/post', validateAuth, validateInput, postController.insert);
+app.get('/post/search', validateAuth, postController.search);
 app.put('/post/:id', validateAuth, validateInput, postController.update);
 app.get('/post/:id', validateAuth, postController.getPostById);
 app.get('/post', validateAuth, postController.getAll);
